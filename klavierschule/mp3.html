@@ -2,10 +2,25 @@
 <html>
     <head>
         <title>Klavierschule MP3 Beispiel</title>
+        <script>
+          function playSound() {
+            var soundElement = document.getElementById('sound')
+            // only play sound if the sound is not yet currently being played back
+            if (soundElement.paused) {
+              soundElement.play()
+            }
+          } 
+        </script>
     </head>
   <body>
     <!-- Autoplay does not work in Chrome as intended by policy (https://stackoverflow.com/questions/50490304/how-to-make-audio-autoplay-on-chrome) -->
-    <audio controls autoplay>
+    <a href="#">
+      <img 
+        src="https://cdn-icons-png.flaticon.com/512/98/98690.png?w=1480&t=st=1653945249~exp=1653945849~hmac=224024f6340c6ac346ab68cb7083199fe07bee44f5d6d985cf93054d6c29b1e9"
+        onclick="javascript:playSound()"
+      />
+    </a>
+    <audio autoplay id="sound">
         <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
