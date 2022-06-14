@@ -7,19 +7,18 @@
       var currentQuestion = -1;
 
       function clickedAnswer(intervalAnswer) {
-        if (currentQuestion < 0 || isAnySoundAlreadyPlaying()) {
-          return;
-        }
-        if (correctAnswers[currentQuestion] === intervalAnswer) {
-          currentQuestion++;
-          var finishedLastQuestion = currentQuestion === correctAnswers.length
-          if (finishedLastQuestion) {
-            playSounds('alles-geschafft');
+        if (currentQuestion >= 0 && !isAnySoundAlreadyPlaying()) {
+          if (correctAnswers[currentQuestion] === intervalAnswer) {
+            currentQuestion++;
+            var finishedLastQuestion = currentQuestion === correctAnswers.length
+            if (finishedLastQuestion) {
+              playSounds('alles-geschafft');
+            } else {
+              playSounds('antwort-richtig', 'frage-' + currentQuestion);
+            }
           } else {
-            playSounds('antwort-richtig', 'frage-' + currentQuestion);
+            playSounds('antwort-falsch', 'frage-' + currentQuestion); 
           }
-        } else {
-          playSounds('antwort-falsch', 'frage-' + currentQuestion); 
         }
       } 
 
