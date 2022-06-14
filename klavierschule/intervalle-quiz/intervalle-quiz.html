@@ -3,15 +3,36 @@
   <head>
     <title>Klavierschule Quiz Beispiel</title>
     <script>
+      var maxNumberOfQuestions = 2;
       var questionsAudios = ['sekunde', 'terz', 'quarte', 'quinte'];
-      var correctAnswers = [0, 1, 2, 3];
+      
+      var correctAnswers = ascendingIndices(questionsAudios.length)
+      shuffleArray(correctAnswers);      
+      
       var currentQuestion = -1;
+
+      function ascendingIndices(length) {
+        var ascendingIndices = Array(length);
+        for (i=0; i<length; i++) {
+          ascendingIndices[i] = i;
+        }
+        return ascendingIndices
+      }
+
+      function shuffleArray (array) {
+        for (i = array.length - 1; i > 0; i--) {
+          var randomSwapIndex = Math.floor(Math.random() * (i + 1));
+          var temp = array[i];
+          array[i] = array[randomSwapIndex];
+          array[randomSwapIndex] = temp;
+        }
+      }
 
       function clickedAnswer(answer) {
         if (currentQuestion >= 0 && !isAnySoundAlreadyPlaying()) {
           if (correctAnswers[currentQuestion] === answer) {
             currentQuestion++;
-            var finishedLastQuestion = currentQuestion === correctAnswers.length
+            var finishedLastQuestion = currentQuestion === maxNumberOfQuestions
             if (finishedLastQuestion) {
               playSounds('alles-geschafft');
             } else {
@@ -24,7 +45,7 @@
       } 
 
       function audioIdFor(questionIndex) {
-        return questionsAudios[questionIndex];
+        return questionsAudios[correctAnswers[questionIndex]];
       }
 
       function startQuiz() {
