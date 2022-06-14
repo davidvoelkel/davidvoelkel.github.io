@@ -6,13 +6,16 @@
           function playSound(soundId) {
             var allAudioElements = document.getElementsByTagName('audio');
             for (var i=0; i<allAudioElements.length; i++) {
-              // do not start new sound playing when there is already another (or the same) sound playing
-              if (!allAudioElements[i].paused) {
-                return;
-              }
+              // when there is already another (or the same) sound playing do stop it and start new sound playing 
+              stopAudio(allAudioElements[i]);
             }
             document.getElementById(soundId).play();
           } 
+
+          function stopAudio(audioElement) {
+            audioElement.pause();
+            audioElement.currentTime = 0;
+          }
         </script>
     </head>
   <body>
