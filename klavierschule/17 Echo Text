@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>17 Echo Text</title>
+        <script>
+          function playSound() {
+            var soundElement = document.getElementById('sound')
+            // only play sound if the sound is not yet currently being played back
+            if (soundElement.paused) {
+              soundElement.play()
+            }
+          } 
+        </script>
+    </head>
+  <body>
+    <!-- Autoplay does not work in Chrome as intended by policy (https://stackoverflow.com/questions/50490304/how-to-make-audio-autoplay-on-chrome) -->
+    <div style="text-align: center">
+      <a href="#">
+        <img src="play.png" onclick="javascript:playSound()" style="width: 100px;" />
+      </a>  
+    </div>
+    <audio autoplay id="sound">
+        <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+  </body>
+</html>
