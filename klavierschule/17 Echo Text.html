@@ -10,30 +10,6 @@
               soundElement.play()
             }
           } 
-          function soundClicked(soundIdClicked) {
-            var allAudioElements = document.getElementsByTagName('audio');
-            for (var i=0; i<allAudioElements.length; i++) {
-              var audioElement = allAudioElements[i];
-              if (audioElement.id === soundIdClicked) {
-                // clicked sound
-                if (audioElement.paused) {
-                  // start sound playing
-                  audioElement.play();
-                } else {
-                  // stop sound, if already playing
-                  stopAudio(audioElement);
-                }
-              } else {
-                // stop other sound already playing
-                stopAudio(audioElement);
-              }
-            }
-          } 
-
-          function stopAudio(audioElement) {
-            audioElement.pause();
-            audioElement.currentTime = 0;
-          }
         </script>
     </head>
   <body>
