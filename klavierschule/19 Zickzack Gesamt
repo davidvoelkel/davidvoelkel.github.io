@@ -31,19 +31,23 @@
     </head>
   <body>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 940 470" style="max-width: 10cm">
-      <image width="940" height="470" xlink:href="https://www.business-spotlight.de/sites/business-spotlight.spotlight-verlag.de/files/styles/mode_content/public/2021-01/Zahlen-im-Englischen.png"></image> 
+      <image width="524" height="435" xlink:href="Zickzack Gesamt.jpg"></image> 
       <a xlink:href="#0">
-        <rect x="137" y="37" fill="#fff" opacity="0" width="113" height="164" onclick="javascript:soundClicked('sound0')"></rect>
+        <rect x="7" y="27" fill="#fff" opacity="0" width="55" height="64" onclick="javascript:soundClicked('sound0')"></rect>
       </a>
       <a xlink:href="#1">
-        <rect x="279" y="38" fill="#fff" opacity="0" width="87" height="171" onclick="javascript:soundClicked('sound1')"></rect>
+        <rect x="78" y="34" fill="#fff" opacity="0" width="56" height="47" onclick="javascript:soundClicked('sound1')"></rect>
       </a>
       <a xlink:href="#2">
-        <rect x="410" y="39" fill="#fff" opacity="0" width="110" height="164" onclick="javascript:soundClicked('sound2')"></rect>
+        <rect x="16" y="112" fill="#fff" opacity="0" width="115" height="304" onclick="javascript:soundClicked('sound2')"></rect>
+      </a>
+      <a xlink:href="#3">
+        <rect x="178" y="58" fill="#fff" opacity="0" width="318" height="318" onclick="javascript:soundClicked('sound3')"></rect>
       </a>
     </svg>
     <audio id="sound0"><source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg"> Your browser does not support the audio element. </audio>
     <audio id="sound1"><source src="https://cdn.pixabay.com/download/audio/2022/03/09/audio_0e6b6ded3e.mp3?filename=happy-tune-29317.mp3" type="audio/mpeg"></audio>
     <audio id="sound2"><source src="https://cdn.pixabay.com/download/audio/2022/03/09/audio_30acf29149.mp3?filename=claps-29454.mp3" type="audio/mpeg"></audio>
+    <audio id="sound3"><source src="https://cdn.pixabay.com/download/audio/2022/03/09/audio_30acf29149.mp3?filename=claps-29454.mp3" type="audio/mpeg"></audio>
   </body>
 </html>
