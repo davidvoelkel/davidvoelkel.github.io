@@ -3,8 +3,8 @@
   <head>
     <title>Klavierschule Quiz Beispiel</title>
     <script>
-      var maxNumberOfQuestions = 4;
-      var questionsAudios = ['sekunde', 'terz', 'quarte', 'quinte'];
+      var maxNumberOfQuestions = 6;
+      var questionsAudios = ['sekunde 1', 'sekunde 2', 'sekunde 3', 'sekunde 4', 'terz 1', 'terz 2', 'terz 3', 'terz 4', 'quarte 1', 'quarte 2', 'quarte 3', 'quarte 4', 'quinte 1', 'quinte 2', 'quinte 3', 'quinte 4'];
       
       var correctAnswers = ascendingIndices(questionsAudios.length)
       shuffleAnswers();      
@@ -85,10 +85,22 @@
     <audio id="quiz" autoplay onended="javascript:playSounds(audioIdFor(0));currentQuestion = 0;">
       <source src="Spielstart.mp3" type="audio/mpeg"> Your browser does not support the audio element. 
     </audio>
-    <audio id="sekunde"><source src="Sekunde.mp3" type="audio/mpeg"></audio>
-    <audio id="terz"><source src="Terz.mp3" type="audio/mpeg"></audio>
-    <audio id="quarte"><source src="Quarte.mp3" type="audio/mpeg"></audio>
-    <audio id="quinte"><source src="Quinte.mp3" type="audio/mpeg"></audio>
+    <audio id="sekunde 1"><source src="Sekunde 1.mp3" type="audio/mpeg"></audio>
+    <audio id="sekunde 2"><source src="Sekunde 2.mp3" type="audio/mpeg"></audio>
+    <audio id="sekunde 3"><source src="Sekunde 3.mp3" type="audio/mpeg"></audio>
+    <audio id="sekunde 4"><source src="Sekunde 4.mp3" type="audio/mpeg"></audio>
+    <audio id="terz 1"><source src="Terz 1.mp3" type="audio/mpeg"></audio>
+    <audio id="terz 2"><source src="Terz 2.mp3" type="audio/mpeg"></audio>
+    <audio id="terz 3"><source src="Terz 3.mp3" type="audio/mpeg"></audio>
+    <audio id="terz 4"><source src="Terz 4.mp3" type="audio/mpeg"></audio>
+    <audio id="quarte 1"><source src="Quarte 1.mp3" type="audio/mpeg"></audio>
+    <audio id="quarte 2"><source src="Quarte 2.mp3" type="audio/mpeg"></audio>
+    <audio id="quarte 3"><source src="Quarte 3.mp3" type="audio/mpeg"></audio>
+    <audio id="quarte 4"><source src="Quarte 4.mp3" type="audio/mpeg"></audio>
+    <audio id="quinte 1"><source src="Quinte 1.mp3" type="audio/mpeg"></audio>
+    <audio id="quinte 2"><source src="Quinte 2.mp3" type="audio/mpeg"></audio>
+    <audio id="quinte 3"><source src="Quinte 3.mp3" type="audio/mpeg"></audio>
+    <audio id="quinte 4"><source src="Quinte 4.mp3" type="audio/mpeg"></audio>
     <audio id="antwort-richtig"><source src="richtig.mp3" type="audio/mpeg"></audio>
     <audio id="antwort-falsch"><source src="falsch.mp3" type="audio/mpeg"></audio>
     <audio id="alles-geschafft"><source src="alles richtig.mp3" type="audio/mpeg"></audio>
