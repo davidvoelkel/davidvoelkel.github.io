@@ -10,6 +10,8 @@
         'terz': ['terz 1', 'terz 2', 'terz 3', 'terz 4'], 
         'quarte': ['quarte 1', 'quarte 2', 'quarte 3', 'quarte 4'], 
         'quinte': ['quinte 1', 'quinte 2', 'quinte 3', 'quinte 4'],
+        'richtig': ['antwort-richtig', 'richtig'],
+        'falsch': ['antwort-falsch', 'falsch'],
       }
 
       var soundKeyToAudioIdIndex;
@@ -75,10 +77,10 @@
                 currentQuestionIndex = -1;
                 playSounds('alles-geschafft');
               } else {
-                playSounds('antwort-richtig', questionAudioIds[currentQuestionIndex]);
+                playSounds(rotatingAudioIdFor('richtig'), questionAudioIds[currentQuestionIndex]);
               }
             } else {
-              playSounds('antwort-falsch', questionAudioIds[currentQuestionIndex]); 
+              playSounds(rotatingAudioIdFor('falsch'), questionAudioIds[currentQuestionIndex]); 
             }
           }
         }
@@ -132,8 +134,10 @@
     <audio id="quinte 2"><source src="Quinte 2.mp3" type="audio/mpeg"></audio>
     <audio id="quinte 3"><source src="Quinte 3.mp3" type="audio/mpeg"></audio>
     <audio id="quinte 4"><source src="Quinte 4.mp3" type="audio/mpeg"></audio>
-    <audio id="antwort-richtig"><source src="richtig.mp3" type="audio/mpeg"></audio>
-    <audio id="antwort-falsch"><source src="falsch.mp3" type="audio/mpeg"></audio>
+    <audio id="richtig"><source src="richtig.mp3" type="audio/mpeg"></audio>
+    <audio id="antwort-richtig"><source src="antwort-richtig.m4a" type="audio/mpeg"></audio>
+    <audio id="falsch"><source src="falsch.mp3" type="audio/mpeg"></audio>
+    <audio id="antwort-falsch"><source src="antwort-falsch.m4a" type="audio/mpeg"></audio>
     <audio id="alles-geschafft"><source src="alles richtig.mp3" type="audio/mpeg"></audio>
 
     <a href="#">
