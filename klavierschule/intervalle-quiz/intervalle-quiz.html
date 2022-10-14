@@ -103,7 +103,7 @@
         var onended;
         if (audioIds.length > 1) {
           var allRemainingAudioIds = audioIds.slice(1);
-          onended = "playSounds(['" + allRemainingAudioIds[0] + "'])";
+          onended = "playSounds(['" + allRemainingAudioIds.join("', '") + "'])";
           if (audioIds[0] === 'quiz') {
             onended = onended + ";currentQuestionIndex = 0;"
           }
