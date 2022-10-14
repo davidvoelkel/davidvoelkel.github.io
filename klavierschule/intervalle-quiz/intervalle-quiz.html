@@ -75,12 +75,12 @@
               var finishedLastQuestion = currentQuestionIndex === numberOfQuestions;
               if (finishedLastQuestion) {
                 currentQuestionIndex = -1;
-                playSounds('alles-geschafft');
+                playSounds(['alles-geschafft']);
               } else {
-                playSounds(rotatingAudioIdFor('richtig'), questionAudioIds[currentQuestionIndex]);
+                playSounds([rotatingAudioIdFor('richtig'), questionAudioIds[currentQuestionIndex]]);
               }
             } else {
-              playSounds(rotatingAudioIdFor('falsch'), questionAudioIds[currentQuestionIndex]); 
+              playSounds([rotatingAudioIdFor('falsch'), questionAudioIds[currentQuestionIndex]]); 
             }
           }
         }
@@ -89,16 +89,29 @@
       function restartQuiz() {
         if (!isAnySoundAlreadyPlaying()) { 
           generateRandomQuestions(numberOfQuestions)
-          playSounds('quiz'); 
+          playSounds(['quiz', questionAudioIds[0]]); 
         }
       }
 
-      function playSounds(audioId1, audioId2) {
-        var firstSound = document.getElementById(audioId1)
-        if (!!audioId2) {
-          firstSound.setAttribute('onended', "javascript:document.getElementById('" + audioId2 + "').play()");
+      function playSounds(audioIds) {
+        console.log("play")
+        console.log(audioIds)
+        var playerElement = document.getElementById("player");
+        var soundToPlay = document.getElementById(audioIds[0]);
+        playerElement.firstElementChild.src = soundToPlay.firstElementChild.src
+        playerElement.load();
+        var onended;
+        if (audioIds.length > 1) {
+          var allRemainingAudioIds = audioIds.slice(1);
+          onended = "playSounds(['" + allRemainingAudioIds[0] + "'])";
+          if (audioIds[0] === 'quiz') {
+            onended = onended + ";currentQuestionIndex = 0;"
+          }
+        } else {
+          onended = "";
         }
-        firstSound.play();
+        player.setAttribute('onended', onended);
+        player.play();
       } 
 
       function isAnySoundAlreadyPlaying() {
@@ -115,9 +128,10 @@
   </head>
   <body>
     <!-- Autoplay does not work in Chrome as intended by policy (https://stackoverflow.com/questions/50490304/how-to-make-audio-autoplay-on-chrome) -->
-    <audio id="quiz" autoplay onended="javascript:playSounds(questionAudioIds[0]);currentQuestionIndex = 0;">
+    <audio id="player" autoplay onended="javascript:playSounds([questionAudioIds[0]]);currentQuestionIndex = 0;">
       <source src="Spielstart.mp3" type="audio/mpeg"> Your browser does not support the audio element. 
     </audio>
+    <audio id="quiz"> <source src="Spielstart.mp3" type="audio/mpeg">s </audio>
     <audio id="sekunde 1"><source src="Sekunde 1.mp3" type="audio/mpeg"></audio>
     <audio id="sekunde 2"><source src="Sekunde 2.mp3" type="audio/mpeg"></audio>
     <audio id="sekunde 3"><source src="Sekunde 3.mp3" type="audio/mpeg"></audio>
