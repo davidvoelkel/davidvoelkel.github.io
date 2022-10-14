@@ -4,7 +4,7 @@
     <title>Klavierschule Quiz Beispiel</title>
     <script>
       var numberOfQuestions = 6;
-      var intervals = ['sekunde', 'terz', 'quarte', 'quinte'];
+      var answers = ['sekunde', 'terz', 'quarte', 'quinte'];
       var soundKeyToAudioIds = {
         'sekunde' : ['sekunde 1', 'sekunde 2', 'sekunde 3', 'sekunde 4'], 
         'terz': ['terz 1', 'terz 2', 'terz 3', 'terz 4'], 
@@ -20,18 +20,18 @@
       var correctAnswers;
 
       shuffleAudioIds();
-      generateRandomQuestions();
+      generateRandomAnswers();
 
-      function generateRandomQuestions() {
+      function generateRandomAnswers() {
 
         correctAnswers = Array(numberOfQuestions);
         questionAudioIds = Array(numberOfQuestions);
         
         for (i=0; i<numberOfQuestions; i++) {
-          var randomIntervalIndex = Math.floor(Math.random() * intervals.length);
-          var interval = intervals[randomIntervalIndex];
-          correctAnswers[i] = interval;
-          questionAudioIds[i] = rotatingAudioIdFor(interval);
+          var randomAnswerIndex = Math.floor(Math.random() * answers.length);
+          var answer = answers[randomAnswerIndex];
+          correctAnswers[i] = answer;
+          questionAudioIds[i] = rotatingAudioIdFor(answer);
         }
         console.log("generateRandomQuestions");
         console.log(correctAnswers);
@@ -46,8 +46,8 @@
       }
 
       function shuffleAudioIds() {
-        soundKeyToAudioIdIndex = Array(intervals.length)
         var soundKeys = Object.keys(soundKeyToAudioIds);
+        soundKeyToAudioIdIndex = Array(soundKeys.length);
         for (x=0; x<soundKeys.length; x++) {
           var soundKey = soundKeys[x];
           soundKeyToAudioIdIndex[soundKey] = 0;
@@ -88,7 +88,7 @@
 
       function restartQuiz() {
         if (!isAnySoundAlreadyPlaying()) { 
-          generateRandomQuestions(numberOfQuestions)
+          generateRandomAnswers(numberOfQuestions)
           playSounds(['quiz', questionAudioIds[0]]); 
         }
       }
