@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Klavierschule 18 Gespräch mit Erklärungen</title>
+        <script>
+          function soundClicked(soundIdClicked) {
+            var allAudioElements = document.getElementsByTagName('audio');
+            for (var i=0; i<allAudioElements.length; i++) {
+              var audioElement = allAudioElements[i];
+              if (audioElement.id === soundIdClicked) {
+                // clicked sound
+                if (audioElement.paused) {
+                  // start sound playing
+                  audioElement.play();
+                } else {
+                  // stop sound, if already playing
+                  stopAudio(audioElement);
+                }
+              } else {
+                // stop other sound already playing
+                stopAudio(audioElement);
+              }
+            }
+          } 
+
+          function stopAudio(audioElement) {
+            audioElement.pause();
+            audioElement.currentTime = 0;
+          }
+        </script>
+    </head>
+  <body>
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 560 376" style="max-width: 20cm">
+  <image width="560" height="376" xlink:href="Echo-Gesamt-Bild-gross-mit-Erklärungen.jpg"></image> <a xlink:href="#0">
+    <rect x="508" y="0" fill="#fff" opacity="0" width="50" height="54"></rect>
+  </a>
+</svg>
+  </body>
+</html>
