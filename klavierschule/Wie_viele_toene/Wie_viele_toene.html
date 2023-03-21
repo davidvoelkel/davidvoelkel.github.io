@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Wie_viele_Toene</title>
+<script>
+var numberOfQuestions = 6;
+var answers = ['Eins', 'Zwei', 'Drei'];
+var soundKeyToAudioIds = {
+'Eins' : ['Eins 1', 'Eins 2', 'Eins 3', 'Eins 4'],
+'Zwei': ['Zwei 1', 'Zwei 2', 'Zwei 3', 'Zwei 4'],
+'Drei': ['Drei 1', 'Drei 2', 'Drei 3', 'Drei 4'],
+
+'richtig': ['richtig1', 'richtig2', 'richtig3', 'richtig4', 'richtig5'],
+'falsch': ['falsch1', 'falsch2', 'falsch3', 'falsch4', 'falsch5', 'falsch6'],
+'text': ['text1'],
+}
+
+var soundKeyToAudioIdIndex;
+var currentQuestionIndex = -1;
+var questionAudioIds;
+var correctAnswers;
+
+shuffleAudioIds();
+generateRandomAnswers();
+
+function generateRandomAnswers() {
+
+correctAnswers = Array(numberOfQuestions);
+questionAudioIds = Array(numberOfQuestions);
+
+for (i=0; i<numberOfQuestions; i++) {
+var randomAnswerIndex = Math.floor(Math.random() * answers.length);
+var answer = answers[randomAnswerIndex];
+correctAnswers[i] = answer;
+questionAudioIds[i] = rotatingAudioIdFor(answer);
+}
+console.log("generateRandomAnswers");
+console.log(correctAnswers);
+console.log(questionAudioIds);
+}
+
+function rotatingAudioIdFor(soundKey) {
+var audioIds = soundKeyToAudioIds[soundKey];
+var audioId = audioIds[soundKeyToAudioIdIndex[soundKey]];
+soundKeyToAudioIdIndex[soundKey] = (soundKeyToAudioIdIndex[soundKey] + 1) % audioIds.length;
+return audioId;
+}
+
+function shuffleAudioIds() {
+var soundKeys = Object.keys(soundKeyToAudioIds);
+soundKeyToAudioIdIndex = Array(soundKeys.length);
+for (x=0; x<soundKeys.length; x++) {
+var soundKey = soundKeys[x];
+soundKeyToAudioIdIndex[soundKey] = 0;
+shuffle(soundKeyToAudioIds[soundKey]);
+}
+}
+
+function shuffle(array) {
+for (i = array.length - 1; i > 0; i--) {
+var randomSwapIndex = Math.floor(Math.random() * (i + 1));
+var temp = array[i];
+array[i] = array[randomSwapIndex];
+array[randomSwapIndex] = temp;
+}
+}
+
+function clickedAnswer(element) {
+var answer = element.parentElement.getAttributeNS("http://www.w3.org/1999/xlink", "href").substring(1);
+if (currentQuestionIndex == -1) {
+restartQuiz();
+} else {
+if (!isAnySoundAlreadyPlaying()) {
+if (correctAnswers[currentQuestionIndex] === answer) {
+currentQuestionIndex++;
+var finishedLastQuestion = currentQuestionIndex === numberOfQuestions;
+if (finishedLastQuestion) {
+currentQuestionIndex = -1;
+playSounds(['alles-geschafft']);
+} else {
+playSounds([rotatingAudioIdFor('richtig'), questionAudioIds[currentQuestionIndex]]);
+}
+} else {
+playSounds([rotatingAudioIdFor('falsch'), questionAudioIds[currentQuestionIndex]]);
+}
+}
+}
+}
+
+function restartQuiz() {
+if (!isAnySoundAlreadyPlaying()) {
+generateRandomAnswers(numberOfQuestions)
+playSounds(['quiz', questionAudioIds[0]]);
+}
+}
+
+function playSounds(audioIds) {
+console.log("play")
+console.log(audioIds)
+var playerElement = document.getElementById("player");
+var soundToPlay = document.getElementById(audioIds[0]);
+playerElement.firstElementChild.src = soundToPlay.firstElementChild.src
+playerElement.load();
+var onended;
+if (audioIds.length > 1) {
+var allRemainingAudioIds = audioIds.slice(1);
+onended = "playSounds(['" + allRemainingAudioIds.join("', '") + "'])";
+if (audioIds[0] === 'quiz') {
+onended = onended + ";currentQuestionIndex = 0;"
+}
+} else {
+onended = "";
+}
+player.setAttribute('onended', onended);
+player.play();
+}
+
+function isAnySoundAlreadyPlaying() {
+var allAudioElements = document.getElementsByTagName('audio');
+for (var i=0; i<allAudioElements.length; i++) {
+// when there is already another (or the same) sound playing do not interrupt it
+if (!allAudioElements[i].paused) {
+return true;
+}
+}
+return false;
+}
+</script>
+</head>
+<body>
+<!-- Autoplay does not work in Chrome as intended by policy (https://stackoverflow.com/questions/50490304/how-to-make-audio-autoplay-on-chrome) -->
+<audio id="player" autoplay onended="javascript:playSounds([questionAudioIds[0]]);currentQuestionIndex = 0;">
+<source src="Wie_viele_Toene-Spielstart.mp3" type="audio/mpeg"> Your browser does not support the audio element.
+</audio>
+<audio id="quiz"> <source src="Wie_viele_Toene-Spielstart.mp3" type="audio/mpeg">s </audio>
+<audio id="Eins 1"><source src="Eins 1.mp3" type="audio/mpeg"></audio>
+<audio id="Eins 2"><source src="Eins 2.mp3" type="audio/mpeg"></audio>
+<audio id="Eins 3"><source src="Eins 3.mp3" type="audio/mpeg"></audio>
+<audio id="Eins 4"><source src="Eins 4.mp3" type="audio/mpeg"></audio>
+<audio id="Zwei 1"><source src="Zwei 1.mp3" type="audio/mpeg"></audio>
+<audio id="Zwei 2"><source src="Zwei 2.mp3" type="audio/mpeg"></audio>
+<audio id="Zwei 3"><source src="Zwei 3.mp3" type="audio/mpeg"></audio>
+<audio id="Zwei 4"><source src="Zwei 4.mp3" type="audio/mpeg"></audio>
+<audio id="Drei 1"><source src="Drei 1.mp3" type="audio/mpeg"></audio>
+<audio id="Drei 2"><source src="Drei 2.mp3" type="audio/mpeg"></audio>
+<audio id="Drei 3"><source src="Drei 3.mp3" type="audio/mpeg"></audio>
+<audio id="Drei 4"><source src="Drei 4.mp3" type="audio/mpeg"></audio>
+
+
+
+
+<audio id="richtig1"><source src="richtig1.mp3" type="audio/mpeg"></audio>
+<audio id="richtig2"><source src="richtig2.mp3" type="audio/mpeg"></audio>
+<audio id="richtig3"><source src="richtig3.mp3" type="audio/mpeg"></audio>
+<audio id="richtig4"><source src="richtig4.mp3" type="audio/mpeg"></audio>
+<audio id="richtig5"><source src="richtig5.mp3" type="audio/mpeg"></audio>
+<audio id="falsch1"><source src="falsch1.mp3" type="audio/mpeg"></audio>
+<audio id="falsch2"><source src="falsch2.mp3" type="audio/mpeg"></audio>
+<audio id="falsch3"><source src="falsch3.mp3" type="audio/mpeg"></audio>
+<audio id="falsch4"><source src="falsch4.mp3" type="audio/mpeg"></audio>
+<audio id="falsch5"><source src="falsch5.mp3" type="audio/mpeg"></audio>
+<audio id="falsch6"><source src="falsch6.mp3" type="audio/mpeg"></audio>
+<audio id="alles-geschafft"><source src="Alles richtig.mp3" type="audio/mpeg"></audio>
+<audio id="text1"><source src="Wie_viele_Toene-Aufgabe.mp3" type="audio/mpeg"></audio>
+
+<div style="vertical-align: top; display: block">
+<img src="Playsymbol.jpg" onclick="javascript:playSounds(['text1'])" style="vertical-align: top; width: 60px; display: inline-block">
+<img src="Wie_viele_Toene-Spielstart.jpg" onclick="javascript:restartQuiz()" style="vertical-align: top; width: 60px; display: inline-block">
+</div>
+
+<!-- SVG Generated by https://imagemapper.noc.io/ -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 961 627" style="max-width: 10cm">
+<image width="961" height="627" xlink:href="Wie_viele_Toene-Spielgrafik.jpg"></image>
+
+
+
+<a xlink:href="#Zwei">
+<rect x="416" y="184" fill="#fff" opacity="0" width="139" height="350" onclick="clickedAnswer(this)"></rect>
+</a>
+<a xlink:href="#Eins">
+<rect x="124" y="254" fill="#fff" opacity="0" width="168" height="270" onclick="clickedAnswer(this)"></rect>
+</a>
+<a xlink:href="#Drei">
+<rect x="715" y="139" fill="#fff" opacity="0" width="236" height="357" onclick="clickedAnswer(this)"></rect>
+</a>
+</svg>
+</body>
+</html>
