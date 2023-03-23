@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kinderlieder</title>
+<script>
+var numberOfQuestions = 6;
+var answers = ['Haenschen', 'Summ', 'Entchen', 'Esel'];
+var soundKeyToAudioIds = {
+'Haenschen' : ['Haenschen 1', 'Haenschen 2', 'Haenschen 3', 'Haenschen 4'],
+'Summ': ['Summ 1', 'Summ 2', 'Summ 3', 'Summ 4'],
+'Entchen': ['Entchen 1', 'Entchen 2', 'Entchen 3', 'Entchen 4'],
+'Esel': ['Esel 1', 'Esel 2', 'Esel 3', 'Esel 4'],
+'richtig': ['richtig1', 'richtig2', 'richtig3', 'richtig4', 'richtig5'],
+'falsch': ['falsch1', 'falsch2', 'falsch3', 'falsch4', 'falsch5', 'falsch6'],
+'text': ['text1'],
+}
+
+var soundKeyToAudioIdIndex;
+var currentQuestionIndex = -1;
+var questionAudioIds;
+var correctAnswers;
+
+shuffleAudioIds();
+generateRandomAnswers();
+
+function generateRandomAnswers() {
+
+correctAnswers = Array(numberOfQuestions);
+questionAudioIds = Array(numberOfQuestions);
+
+for (i=0; i<numberOfQuestions; i++) {
+var randomAnswerIndex = Math.floor(Math.random() * answers.length);
+var answer = answers[randomAnswerIndex];
+correctAnswers[i] = answer;
+questionAudioIds[i] = rotatingAudioIdFor(answer);
+}
+console.log("generateRandomAnswers");
+console.log(correctAnswers);
+console.log(questionAudioIds);
+}
+
+function rotatingAudioIdFor(soundKey) {
+var audioIds = soundKeyToAudioIds[soundKey];
+var audioId = audioIds[soundKeyToAudioIdIndex[soundKey]];
+soundKeyToAudioIdIndex[soundKey] = (soundKeyToAudioIdIndex[soundKey] + 1) % audioIds.length;
+return audioId;
+}
+
+function shuffleAudioIds() {
+var soundKeys = Object.keys(soundKeyToAudioIds);
+soundKeyToAudioIdIndex = Array(soundKeys.length);
+for (x=0; x<soundKeys.length; x++) {
+var soundKey = soundKeys[x];
+soundKeyToAudioIdIndex[soundKey] = 0;
+shuffle(soundKeyToAudioIds[soundKey]);
+}
+}
+
+function shuffle(array) {
+for (i = array.length - 1; i > 0; i--) {
+var randomSwapIndex = Math.floor(Math.random() * (i + 1));
+var temp = array[i];
+array[i] = array[randomSwapIndex];
+array[randomSwapIndex] = temp;
+}
+}
+
+function clickedAnswer(element) {
+var answer = element.parentElement.getAttributeNS("http://www.w3.org/1999/xlink", "href").substring(1);
+if (currentQuestionIndex == -1) {
+restartQuiz();
+} else {
+if (!isAnySoundAlreadyPlaying()) {
+if (correctAnswers[currentQuestionIndex] === answer) {
+currentQuestionIndex++;
+var finishedLastQuestion = currentQuestionIndex === numberOfQuestions;
+if (finishedLastQuestion) {
+currentQuestionIndex = -1;
+playSounds(['alles-geschafft']);
+} else {
+playSounds([rotatingAudioIdFor('richtig'), questionAudioIds[currentQuestionIndex]]);
+}
+} else {
+playSounds([rotatingAudioIdFor('falsch'), questionAudioIds[currentQuestionIndex]]);
+}
+}
+}
+}
+
+function restartQuiz() {
+if (!isAnySoundAlreadyPlaying()) {
+generateRandomAnswers(numberOfQuestions)
+playSounds(['quiz', questionAudioIds[0]]);
+}
+}
+
+function playSounds(audioIds) {
+console.log("play")
+console.log(audioIds)
+var playerElement = document.getElementById("player");
+var soundToPlay = document.getElementById(audioIds[0]);
+playerElement.firstElementChild.src = soundToPlay.firstElementChild.src
+playerElement.load();
+var onended;
+if (audioIds.length > 1) {
+var allRemainingAudioIds = audioIds.slice(1);
+onended = "playSounds(['" + allRemainingAudioIds.join("', '") + "'])";
+if (audioIds[0] === 'quiz') {
+onended = onended + ";currentQuestionIndex = 0;"
+}
+} else {
+onended = "";
+}
+player.setAttribute('onended', onended);
+player.play();
+}
+
+function isAnySoundAlreadyPlaying() {
+var allAudioElements = document.getElementsByTagName('audio');
+for (var i=0; i<allAudioElements.length; i++) {
+// when there is already another (or the same) sound playing do not interrupt it
+if (!allAudioElements[i].paused) {
+return true;
+}
+}
+return false;
+}
+</script>
+</head>
+<body>
+<!-- Autoplay does not work in Chrome as intended by policy (https://stackoverflow.com/questions/50490304/how-to-make-audio-autoplay-on-chrome) -->
+<audio id="player" autoplay onended="javascript:playSounds([questionAudioIds[0]]);currentQuestionIndex = 0;">
+<source src="Kinderlieder_Spielstart.mp3" type="audio/mpeg"> Your browser does not support the audio element.
+</audio>
+<audio id="quiz"> <source src="Kinderlieder_Spielstart.mp3" type="audio/mpeg">s </audio>
+<audio id="Haenschen 1"><source src="Haenschen 1.mp3" type="audio/mpeg"></audio>
+<audio id="Haenschen 2"><source src="Haenschen 2.mp3" type="audio/mpeg"></audio>
+<audio id="Haenschen 3"><source src="Haenschen 3.mp3" type="audio/mpeg"></audio>
+<audio id="Haenschen 4"><source src="Haenschen 4.mp3" type="audio/mpeg"></audio>
+<audio id="Summ 1"><source src="Summ 1.mp3" type="audio/mpeg"></audio>
+<audio id="Summ 2"><source src="Summ 2.mp3" type="audio/mpeg"></audio>
+<audio id="Summ 3"><source src="Summ 3.mp3" type="audio/mpeg"></audio>
+<audio id="Summ 4"><source src="Summ 4.mp3" type="audio/mpeg"></audio>
+<audio id="Entchen 1"><source src="Entchen 1.mp3" type="audio/mpeg"></audio>
+<audio id="Entchen 2"><source src="Entchen 2.mp3" type="audio/mpeg"></audio>
+<audio id="Entchen 3"><source src="Entchen 3.mp3" type="audio/mpeg"></audio>
+<audio id="Entchen 4"><source src="Entchen 4.mp3" type="audio/mpeg"></audio>
+<audio id="Esel 1"><source src="Esel 1.mp3" type="audio/mpeg"></audio>
+<audio id="Esel 2"><source src="Esel 2.mp3" type="audio/mpeg"></audio>
+<audio id="Esel 3"><source src="Esel 3.mp3" type="audio/mpeg"></audio>
+<audio id="Esel 4"><source src="Esel 4.mp3" type="audio/mpeg"></audio>
+<audio id="richtig1"><source src="richtig1.mp3" type="audio/mpeg"></audio>
+<audio id="richtig2"><source src="richtig2.mp3" type="audio/mpeg"></audio>
+<audio id="richtig3"><source src="richtig3.mp3" type="audio/mpeg"></audio>
+<audio id="richtig4"><source src="richtig4.mp3" type="audio/mpeg"></audio>
+<audio id="richtig5"><source src="richtig5.mp3" type="audio/mpeg"></audio>
+<audio id="falsch1"><source src="falsch1.mp3" type="audio/mpeg"></audio>
+<audio id="falsch2"><source src="falsch2.mp3" type="audio/mpeg"></audio>
+<audio id="falsch3"><source src="falsch3.mp3" type="audio/mpeg"></audio>
+<audio id="falsch4"><source src="falsch4.mp3" type="audio/mpeg"></audio>
+<audio id="falsch5"><source src="falsch5.mp3" type="audio/mpeg"></audio>
+<audio id="falsch6"><source src="falsch6.mp3" type="audio/mpeg"></audio>
+<audio id="alles-geschafft"><source src="Alles richtig.mp3" type="audio/mpeg"></audio>
+<audio id="text1"><source src="Kinderlieder_Aufgabe.mp3" type="audio/mpeg"></audio>
+
+<div style="vertical-align: top; display: block">
+<img src="Playsymbol.jpg" onclick="javascript:playSounds(['text1'])" style="vertical-align: top; width: 60px; display: inline-block">
+<img src="Spielstart.jpg" onclick="javascript:restartQuiz()" style="vertical-align: top; width: 60px; display: inline-block">
+</div>
+
+<!-- SVG Generated by https://imagemapper.noc.io/ -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 960 720" style="max-width: 10cm">
+<image width="960" height="720" xlink:href="Kinderlieder_Spielgrafik.jpg"></image>
+<a xlink:href="#Esel">
+<rect x="176" y="394" fill="#fff" opacity="0" width="568" height="246" onclick="clickedAnswer(this)"></rect>
+</a>
+<a xlink:href="#Summ">
+<rect x="374" y="60" fill="#fff" opacity="0" width="277" height="272" onclick="clickedAnswer(this)"></rect>
+</a>
+<a xlink:href="#Haenschen">
+<rect x="58" y="76" fill="#fff" opacity="0" width="202" height="272" onclick="clickedAnswer(this)"></rect>
+</a>
+<a xlink:href="#Entchen">
+<rect x="716" y="137" fill="#fff" opacity="0" width="183" height="176" onclick="clickedAnswer(this)"></rect>
+</a>
+</svg>
+</body>
+</html>
