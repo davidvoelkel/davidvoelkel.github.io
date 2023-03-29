@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>17 Echo Mosaik</title>
+        <script>
+          function soundClicked(soundIdClicked) {
+            var allAudioElements = document.getElementsByTagName('audio');
+            for (var i=0; i<allAudioElements.length; i++) {
+              var audioElement = allAudioElements[i];
+              if (audioElement.id === soundIdClicked) {
+                // clicked sound
+                if (audioElement.paused) {
+                  // start sound playing
+                  audioElement.play();
+                } else {
+                  // stop sound, if already playing
+                  stopAudio(audioElement);
+                }
+              } else {
+                // stop other sound already playing
+                stopAudio(audioElement);
+              }
+            }
+          } 
+
+          function stopAudio(audioElement) {
+            audioElement.pause();
+            audioElement.currentTime = 0;
+          }
+        </script>
+    </head>
+  <body>
+     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 847 439" style="max-width: 20cm">
+  <image width="847" height="439" xlink:href="Echo-Mosaik-Gesamt.jpg"></image>
+       <a xlink:href="#0">
+        <rect x="126" y="104" fill="#fff" opacity="0" width="104" height="106" onclick="javascript:soundClicked('sound0')"></rect>
+           //Zeile 1 Feld 1
+      </a>
+      <a xlink:href="#1">
+        <rect x="246" y="110" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound1')"></rect>
+      </a>
+      <a xlink:href="#2">
+        <rect x="364" y="112" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound2')"></rect>
+      </a>
+        <a xlink:href="#3">
+        <rect x="480" y="115" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound3')"></rect>
+      </a>
+        <a xlink:href="#4">
+        <rect x="592" y="118" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound4')"></rect>
+      </a>
+        <a xlink:href="#5">
+        <rect x="719" y="120" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound5')"></rect>
+      </a>
+        <a xlink:href="#6">
+        <rect x="132" y="248" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound6')"></rect>
+           //Zeile 2 Feld 1
+      </a>
+        <a xlink:href="#7">
+        <rect x="246" y="250" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound7')"></rect>
+      </a>
+      <a xlink:href="#8">
+        <rect x="363" y="255" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound8')"></rect>
+      </a>
+        <a xlink:href="#9">
+        <rect x="480" y="252" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound9')"></rect>
+      </a>
+        <a xlink:href="#10">
+        <rect x="595" y="254" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound10')"></rect>
+      </a>
+        <a xlink:href="#11">
+        <rect x="721" y="255" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound11')"></rect>
+      </a>
+      <a xlink:href="#12">
+        <rect x="68" y="118" fill="#fff" opacity="0" width="50" height="50" onclick="javascript:soundClicked('sound12')"></rect>
+          //Pfeil 1 senkrecht
+      </a>
+         <a xlink:href="#13">
+        <rect x="75" y="245" fill="#fff" opacity="0" width="50" height="50" onclick="javascript:soundClicked('sound13')"></rect>
+      </a>
+         <a xlink:href="#14">
+        <rect x="129" y="366" fill="#fff" opacity="0" width="50" height="50" onclick="javascript:soundClicked('sound14')"></rect>
+          //Pfeil 1 waagerecht
+      </a>
+        <a xlink:href="#15">
+        <rect x="268" y="369" fill="#fff" opacity="0" width="50" height="50" onclick="javascript:soundClicked('sound15')"></rect>
+      </a>
+        <a xlink:href="#16">
+        <rect x="390" y="370" fill="#fff" opacity="0" width="50" height="50" onclick="javascript:soundClicked('sound16')"></rect>
+      </a>
+        <a xlink:href="#17">
+        <<rect x="508" y="372" fill="#fff" opacity="0" width="50" height="50" onclick="javascript:soundClicked('sound17')"></rect>
+      </a>
+        <a xlink:href="#18">
+        <rect x="631" y="373" fill="#fff" opacity="0" width="50" height="50" onclick="javascript:soundClicked('sound18')"></rect>
+      </a>
+        <a xlink:href="#19">
+        <rect x="736" y="372" fill="#fff" opacity="0" width="50" height="50" onclick="javascript:soundClicked('sound19')"></rect>
+      </a>
+         <a xlink:href="#20">
+        <rect x="30" y="174" fill="#fff" opacity="0" width="74" height="60" onclick="javascript:soundClicked('sound20')"></rect>
+          //Rechte Hand
+      </a>
+        <a xlink:href="#21">
+        <rect x="29" y="302" fill="#fff" opacity="0" width="70" height="60" onclick="javascript:soundClicked('sound21')"></rect>
+          //Linke Hand
+      </a>
+        <a xlink:href="#22">
+        <rect x="96" y="32" fill="#fff" opacity="0" width="50" height="50" onclick="javascript:soundClicked('sound22')"></rect>
+          //Gesamtes Stück abspielen
+      </a>
+        <a xlink:href="#23">
+        <rect x="35" y="29" fill="#fff" opacity="0" width="50" height="50" onclick="javascript:soundClicked('sound23')"></rect>
+          //Text
+      </a>
+        <a xlink:href="../17 Echo/17-Echo-Gesamt.html">
+        <rect x="719" y="24" fill="#fff" opacity="0" width="50" height="50"></rect>
+          //Zurück
+      </a>
+      <a xlink:href="17-Echo-Mosaik-mit-Erklärungen.html">
+        <rect x="777" y="22" fill="#fff" opacity="0" width="50" height="50"></rect>
+          //Erklärungen
+      </a>
+    </svg>
+    <audio id="sound0"><source src="Echo Zeile 1 Teil 1.mp3" type="audio/mpeg"> Your browser does not support the audio element. </audio>
+    <audio id="sound1"><source src="Echo Zeile 1 Teil 2.mp3" type="audio/mpeg"></audio>
+    <audio id="sound2"><source src="Echo Zeile 1 Teil 3.mp3" type="audio/mpeg"></audio>
+    <audio id="sound3"><source src="Echo Zeile 1 Teil 4.mp3" type="audio/mpeg"></audio>
+    <audio id="sound4"><source src="Echo Zeile 1 Teil 5.mp3" type="audio/mpeg"></audio>
+    <audio id="sound5"><source src="Echo Zeile 1 Teil 6.mp3" type="audio/mpeg"></audio>
+    <audio id="sound6"><source src="Echo Zeile 2 Teil 1.mp3" type="audio/mpeg"></audio>
+    <audio id="sound7"><source src="Echo Zeile 2 Teil 2.mp3" type="audio/mpeg"></audio>
+    <audio id="sound8"><source src="Echo Zeile 2 Teil 3.mp3" type="audio/mpeg"></audio>
+    <audio id="sound9"><source src="Echo Zeile 2 Teil 4.mp3" type="audio/mpeg"></audio>
+    <audio id="sound10"><source src="Echo Zeile 2 Teil 5.mp3" type="audio/mpeg"></audio>
+    <audio id="sound11"><source src="Echo Zeile 2 Teil 6.mp3" type="audio/mpeg"></audio>
+    <audio id="sound12"><source src="Echo re Hand ganz.mp3" type="audio/mpeg"></audio>
+    <audio id="sound13"><source src="Echo li Hand ganz.mp3" type="audio/mpeg"></audio>
+    <audio id="sound14"><source src="Echo Pfeil 1 waagerecht.mp3" type="audio/mpeg"></audio>
+    <audio id="sound15"><source src="Echo Pfeil 2 waagerecht.mp3" type="audio/mpeg"></audio>
+    <audio id="sound16"><source src="Echo Pfeil 3 waagerecht.mp3" type="audio/mpeg"></audio>
+    <audio id="sound17"><source src="Echo Pfeil 4 waagerecht.mp3" type="audio/mpeg"></audio>
+    <audio id="sound18"><source src="Echo Pfeil 5 waagerecht.mp3" type="audio/mpeg"></audio>
+    <audio id="sound19"><source src="Echo Pfeil 6 waagerecht.mp3" type="audio/mpeg"></audio>
+    <audio id="sound20"><source src="Lage-Hand-rechts.mp3" type="audio/mpeg"></audio>
+    <audio id="sound21"><source src="Lage-Hand-links.mp3" type="audio/mpeg"></audio>
+    <audio id="sound22"><source src="Echo Musik ganz.mp3" type="audio/mpeg"></audio>
+    <audio id="sound23" onended="this.children[0].src='Echo-Mosaik-Text-2.mp3'; this.load()"><source src="Echo-Mosaik-Text-1.mp3" type="audio/mpeg"> 
+        Your browser does not support the audio element. </audio>
+  </body>
+</html>
