@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>17 Echo Mosaik</title>
+        <script>
+          function soundClicked(soundIdClicked) {
+            var allAudioElements = document.getElementsByTagName('audio');
+            for (var i=0; i<allAudioElements.length; i++) {
+              var audioElement = allAudioElements[i];
+              if (audioElement.id === soundIdClicked) {
+                // clicked sound
+                if (audioElement.paused) {
+                  // start sound playing
+                  audioElement.play();
+                } else {
+                  // stop sound, if already playing
+                  stopAudio(audioElement);
+                }
+              } else {
+                // stop other sound already playing
+                stopAudio(audioElement);
+              }
+            }
+          } 
+
+          function stopAudio(audioElement) {
+            audioElement.pause();
+            audioElement.currentTime = 0;
+          }
+        </script>
+    </head>
+  <body>
+
+// 1 info, 2+9-11 gelb, 3-8 rot, 12-17 Blau, 18-20 orange
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1132 815" style="max-width: 20cm">
+  <image width="1132" height="815" xlink:href="Mandala.jpg"></image> <a xlink:href="#1">
+    <rect x="40" y="26" fill="#fff" opacity="0" width="111" height="154" onclick="javascript:soundClicked('sound1')"></rect>
+  </a><a xlink:href="#5">
+    <rect x="384" y="323" fill="#fff" opacity="0" width="88" height="121" onclick="javascript:soundClicked('sound5')"></rect>
+  </a><a xlink:href="#3">
+    <rect x="507" y="520" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound3')"></rect>
+  </a><a xlink:href="#4">
+    <rect x="636" y="331" fill="#fff" opacity="0" width="92" height="94" onclick="javascript:soundClicked('sound4')"></rect>
+  </a><a xlink:href="#2">
+    <rect x="491" y="380" fill="#fff" opacity="0" width="127" height="126" onclick="javascript:soundClicked('sound2')"></rect>
+  </a><a xlink:href="#6">
+    <rect x="358" y="107" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound6')"></rect>
+  </a><a xlink:href="#7">
+    <rect x="844" y="391" fill="#fff" opacity="0" width="72" height="100" onclick="javascript:soundClicked('sound7')"></rect>
+  </a><a xlink:href="#8">
+    <rect x="370" y="676" fill="#fff" opacity="0" width="100" height="74" onclick="javascript:soundClicked('sound8')"></rect>
+  </a><a xlink:href="#9">
+    <rect x="690" y="140" fill="#fff" opacity="0" width="84" height="92" onclick="javascript:soundClicked('sound9')"></rect>
+  </a><a xlink:href="#10">
+    <rect x="185" y="420" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound10')"></rect>
+  </a><a xlink:href="#11">
+    <rect x="666" y="648" fill="#fff" opacity="0" width="77" height="109" onclick="javascript:soundClicked('sound11')"></rect>
+  </a><a xlink:href="#12">
+    <rect x="244" y="223" fill="#fff" opacity="0" width="140" height="140" onclick="javascript:soundClicked('sound12')"></rect>
+  </a><a xlink:href="#13">
+    <rect x="498" y="136" fill="#fff" opacity="0" width="164" height="113" onclick="javascript:soundClicked('sound13')"></rect>
+  </a><a xlink:href="#14">
+    <rect x="743" y="240" fill="#fff" opacity="0" width="96" height="170" onclick="javascript:soundClicked('sound14')"></rect>
+  </a><a xlink:href="#15">
+    <rect x="727" y="478" fill="#fff" opacity="0" width="116" height="144" onclick="javascript:soundClicked('sound15')"></rect>
+  </a><a xlink:href="#16">
+    <rect x="486" y="628" fill="#fff" opacity="0" width="155" height="106" onclick="javascript:soundClicked('sound16')"></rect>
+  </a><a xlink:href="#17">
+    <rect x="265" y="530" fill="#fff" opacity="0" width="115" height="135" onclick="javascript:soundClicked('sound17')"></rect>
+  </a><a xlink:href="#18">
+    <rect x="511" y="254" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound18')"></rect>
+  </a><a xlink:href="#19">
+    <rect x="377" y="471" fill="#fff" opacity="0" width="100" height="100" onclick="javascript:soundClicked('sound19')"></rect>
+  </a><a xlink:href="#20">
+    <rect x="627" y="460" fill="#fff" opacity="0" width="100" height="100"onclick="javascript:soundClicked('sound20')"></rect>
+  </a>
+</svg>
+
+// 1 info, 2+9-11 gelb, 3-8 rot, 12-17 Blau, 18-20 orange
+    
+    <audio id="sound1"><source src="Mandala_Aufgabe.mp3" type="audio/mpeg"></audio>
+    <audio id="sound2"><source src="Gelb 1.mp3" type="audio/mpeg"></audio>
+    <audio id="sound3"><source src="Rot 1.mp3" type="audio/mpeg"></audio>
+    <audio id="sound4"><source src="Rot 2.mp3" type="audio/mpeg"></audio>
+    <audio id="sound5"><source src="Rot 3.mp3" type="audio/mpeg"></audio>
+    <audio id="sound6"><source src="Rot 4.mp3" type="audio/mpeg"></audio>
+    <audio id="sound7"><source src="Rot 1.mp3" type="audio/mpeg"></audio>
+    <audio id="sound8"><source src="Rot 2.mp3" type="audio/mpeg"></audio>
+    <audio id="sound9"><source src="Gelb 2.mp3" type="audio/mpeg"></audio>
+    <audio id="sound10"><source src="Gelb 3.mp3" type="audio/mpeg"></audio>
+    <audio id="sound11"><source src="Gelb 4.mp3" type="audio/mpeg"></audio>
+    <audio id="sound12"><source src="Blau 1.mp3" type="audio/mpeg"></audio>
+    <audio id="sound13"><source src="Blau 2.mp3" type="audio/mpeg"></audio>
+    <audio id="sound14"><source src="Blau 3.mp3" type="audio/mpeg"></audio>
+    <audio id="sound15"><source src="Blau 4.mp3" type="audio/mpeg"></audio>
+    <audio id="sound16"><source src="Blau 1.mp3" type="audio/mpeg"></audio>
+    <audio id="sound17"><source src="Blau 2.mp3" type="audio/mpeg"></audio>
+    <audio id="sound18"><source src="Orange 1.mp3" type="audio/mpeg"></audio>
+    <audio id="sound19"><source src="Orange 2.mp3" type="audio/mpeg"></audio>
+    <audio id="sound20"><source src="Orange 3.mp3" type="audio/mpeg"></audio>
+   
+  </body>
+</html>
