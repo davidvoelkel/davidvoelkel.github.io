@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flohtanz</title>
+        <script>
+          function soundClicked(soundIdClicked) {
+            var allAudioElements = document.getElementsByTagName('audio');
+            for (var i=0; i<allAudioElements.length; i++) {
+              var audioElement = allAudioElements[i];
+              if (audioElement.id === soundIdClicked) {
+                // clicked sound
+                if (audioElement.paused) {
+                  // start sound playing
+                  audioElement.play();
+                } else {
+                  // stop sound, if already playing
+                  stopAudio(audioElement);
+                }
+              } else {
+                // stop other sound already playing
+                stopAudio(audioElement);
+              }
+            }
+          } 
+
+          function stopAudio(audioElement) {
+            audioElement.pause();
+            audioElement.currentTime = 0;
+          }
+        </script>
+    </head>
+  <body>
+
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1328 550" style="max-width: 20cm">
+  <image width="1328" height="550" xlink:href="Flohtanz-Gesamt.jpg"></image> <a xlink:href="#1">
+    <rect x="40" y="59" fill="#fff" opacity="0" width="108" height="118" onclick="javascript:soundClicked('sound0')></rect>
+//Start
+  </a><a xlink:href="#2">
+    <rect x="16" y="200" fill="#fff" opacity="0" width="158" height="156" onclick="javascript:soundClicked('sound1')></rect>
+//Bild 1
+  </a><a xlink:href="#3">
+    <rect x="199" y="199" fill="#fff" opacity="0" width="143" height="149" onclick="javascript:soundClicked('sound2')></rect>
+//Bild 2
+  </a><a xlink:href="#4">
+    <rect x="371" y="201" fill="#fff" opacity="0" width="142" height="149" onclick="javascript:soundClicked('sound3')></rect>
+  </a><a xlink:href="#5">
+    <rect x="532" y="202" fill="#fff" opacity="0" width="143" height="153" onclick="javascript:soundClicked('sound4')></rect>
+  </a><a xlink:href="#6">
+    <rect x="696" y="205" fill="#fff" opacity="0" width="136" height="147" onclick="javascript:soundClicked('sound5')></rect>
+  </a><a xlink:href="#7">
+    <rect x="852" y="203" fill="#fff" opacity="0" width="143" height="148" onclick="javascript:soundClicked('sound6')></rect>
+  </a><a xlink:href="#8">
+    <rect x="1011" y="207" fill="#fff" opacity="0" width="139" height="146" onclick="javascript:soundClicked('sound7')></rect>
+  </a><a xlink:href="#9">
+    <rect x="1153" y="206" fill="#fff" opacity="0" width="90" height="143" onclick="javascript:soundClicked('sound8')></rect>
+  </a>
+</svg>
+   
+    <audio id="sound0"><source src="Aufgabe-Flohtanz.mp3" type="audio/mpeg"></audio>    
+    <audio id="sound1"><source src="Bild1.mp3" type="audio/mpeg"></audio>
+<audio id="sound2"><source src="Bild2.mp3" type="audio/mpeg"></audio>
+<audio id="sound3"><source src="Bild3.mp3" type="audio/mpeg"></audio>
+<audio id="sound4"><source src="Bild4.mp3" type="audio/mpeg"></audio>
+<audio id="sound5"><source src="Bild5.mp3" type="audio/mpeg"></audio>
+<audio id="sound6"><source src="Bild6.mp3" type="audio/mpeg"></audio>
+<audio id="sound7"><source src="Bild7.mp3" type="audio/mpeg"></audio>
+<audio id="sound8"><source src="Bild8.mp3" type="audio/mpeg"></audio>
+                                                                                                                                                                                                                  
+  </body>
+</html>
