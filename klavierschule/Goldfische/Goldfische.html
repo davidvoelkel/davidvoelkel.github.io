@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Goldfische</title>
+        <script>
+          function soundClicked(soundIdClicked) {
+            var allAudioElements = document.getElementsByTagName('audio');
+            for (var i=0; i<allAudioElements.length; i++) {
+              var audioElement = allAudioElements[i];
+              if (audioElement.id === soundIdClicked) {
+                // clicked sound
+                if (audioElement.paused) {
+                  // start sound playing
+                  audioElement.play();
+                } else {
+                  // stop sound, if already playing
+                  stopAudio(audioElement);
+                }
+              } else {
+                // stop other sound already playing
+                stopAudio(audioElement);
+              }
+            }
+          } 
+
+          function stopAudio(audioElement) {
+            audioElement.pause();
+            audioElement.currentTime = 0;
+          }
+        </script>
+    </head>
+  <body>
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1568 940" style="max-width: 20cm">
+  <image width="1568" height="940" xlink:href="Goldfische-Gesamt,jpg"></image> <a xlink:href="#1">
+    <rect x="142" y="84" fill="#fff" opacity="0" width="143" height="161" onclick="javascript:soundClicked('sound0')></rect>
+//Start
+  </a><a xlink:href="#2">
+    <rect x="309" y="94" fill="#fff" opacity="0" width="143" height="142" onclick="javascript:soundClicked('sound1')></rect>
+//Playalong
+  </a><a xlink:href="#3">
+    <rect x="355" y="413" fill="#fff" opacity="0" width="813" height="228" onclick="javascript:soundClicked('sound2')></rect>
+// KOmmentar Fische
+  </a>
+</svg>
+
+   
+    <audio id="sound0"><source src="Aufgabe-Goldfische.mp3" type="audio/mpeg"></audio>    
+    <audio id="sound1"><source src="Playalong-Goldfische.mp3" type="audio/mpeg"></audio>
+    <audio id="sound2"><source src="Fische-Kommentar.mp3" type="audio/mpeg"></audio>                                                                                                                                                                                                                    
+  </body>
+</html>
